@@ -1,8 +1,60 @@
 HOW TO REQUEST DATA FROM MICROSERVICE:
 
-1.) write into .txt pipe change-settings
-2.) microservice will then change the appropriate settings and apply them to the web service.
+To programmatically request data from the microservice implemented in server.js, utilize an HTTP 
+client library like axios in JavaScript. Send an HTTP GET request to the desired endpoint, handle 
+the response to obtain the requested data, and ensure to implement error handling for any potential issues.
 
 HOW TO RECIEVE DATA FROM THE MICROSERVICE:
 
-1.) Write into .txt file or send GET request to get setting configurations.
+To programmatically interact with the microservice implemented in server.js, you'll utilize HTTP 
+requests. Determine the endpoints you need to access: / for retrieving HTML content and /update-theme 
+for updating the theme setting. Send an HTTP GET request to / to receive the settings page HTML, and 
+handle the response appropriately. For updating the theme, send an HTTP POST request to /update-theme 
+with the new theme data.
+
+Client                Server                settings.js           fs module
+    |                      |                       |                     |
+    |  HTTP GET request    |                       |                     |
+    |--------------------->|                       |                     |
+    |                      |                       |                     |
+    |                      |  Handle HTTP request  |                     |
+    |                      |---------------------->|                     |
+    |                      |                       |                     |
+    |                      | Read settings from    |                     |
+    |                      | file                  |                     |
+    |                      |<----------------------|                     |
+    |                      |                       |                     |
+    |                      | Read settings.txt     |                     |
+    |                      |---------------------->|                     |
+    |                      |                       |                     |
+    |                      |                       |                     |
+    |                      |                       |                     |
+    |                      |                       |                     |
+    |                      |<----------------------|                     |
+    |                      |                       |                     |
+    |                      | Respond with HTML     |                     |
+    |                      | content               |                     |
+    |                      |<----------------------|                     |
+    |  Display HTML content|                       |                     |
+    |<---------------------|                       |                     |
+    |                      |                       |                     |
+    |  Submit form data    |                       |                     |
+    |---------------------->|                       |                    |
+    |                      |                       |                     |
+    |                      | Handle HTTP request   |                     |
+    |                      |---------------------->|                     |
+    |                      | Read request body     |                     |
+    |                      |---------------------->|                     |
+    |                      |                       |                     |
+    |                      |                       | Write new settings  |
+    |                      |                       |-------------------> |
+    |                      |                       |                     |
+    |                      |                       |                     |
+    |                      |                       |                     |
+    |                      |                       |                     |
+    |                      |                       |                     |
+    |                      |                       |                     |
+    |                      | Respond with status   |                     |
+    |                      | 200                   |                     |
+    |                      |<----------------------|                     |
+    |                      |                       |                     |
