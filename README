@@ -1,0 +1,8 @@
+HOW TO REQUEST DATA FROM MICROSERVICE:
+
+1.) write into .txt pipe change-settings
+2.) microservice will then change the appropriate settings and apply them to the web service.
+
+HOW TO RECIEVE DATA FROM THE MICROSERVICE:
+
+1.) Write into .txt file or send GET request to get setting configurations.
